@@ -13,9 +13,22 @@ Deploys a hardened S3 bucket suitable for storing sensitive data, backups, logs,
 - **Version Control**: Object versioning enabled to protect against accidental deletions
 - **Security Hardening**: Private ACL with no public policies or permissions
 
+## Required Variables
+
+### `bucket_prefix`
+- **Description**: Prefix for the S3 bucket name
+- **Type**: string (required)
+- **Constraints**: 
+  - Must be 3-40 characters long
+  - Must start with a letter or number
+  - Can only contain lowercase letters, numbers, and hyphens
+- **Example**: `"app-backups"`, `"log-storage"`, `"secure-docs"`
+
+The final bucket name will be: `{bucket_prefix}-{aws_account_id}`
+
 ## Resources Created
 
-- Private S3 bucket with account-unique naming
+- Private S3 bucket with globally unique naming
 - Public access block configuration (all protections enabled)
 - Private bucket ACL
 - Versioning configuration

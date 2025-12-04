@@ -21,7 +21,7 @@ data "aws_caller_identity" "current" {}
 
 # Private S3 bucket (secure configuration)
 resource "aws_s3_bucket" "private_bucket" {
-  bucket = "genai-demo-private-bucket-${data.aws_caller_identity.current.account_id}"
+  bucket = "${var.bucket_prefix}-${data.aws_caller_identity.current.account_id}"
 }
 
 # Block all public access (security best practice)
